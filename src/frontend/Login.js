@@ -52,7 +52,7 @@ export const Login = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem' }}>
-      <h1>Login</h1>
+      <h1>Welcome to Bandhu💜!</h1>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <label htmlFor="username" style={{ fontWeight: 'bold', marginTop: '1rem' }}>Username</label>
         <input
@@ -62,7 +62,7 @@ export const Login = () => {
           placeholder="Your username.."
           value={username}
           onChange={handleChange}
-          style={{ padding: '0.5rem', marginTop: '0.5rem', width: '300px' }}
+          style={{fontfamily: 'Montserrat', padding: '0.5rem', marginTop: '0.5rem', width: '300px' }}
         />
         <label htmlFor="password" style={{ fontWeight: 'bold', marginTop: '1rem' }}>Password</label>
         <input
@@ -72,18 +72,18 @@ export const Login = () => {
           placeholder="Your password.."
           value={password}
           onChange={handleChange}
-          style={{ padding: '0.5rem', marginTop: '0.5rem', width: '300px' }}
+          style={{fontfamily: 'Montserrat', padding: '0.5rem', marginTop: '0.5rem', width: '300px' }}
         />
         <button
           type="button"
           onClick={handleGuestLogin}
-          style={{ padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}
         >
           Log in as a Guest
         </button>
         <button
           type="submit"
-          style={{ padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}
         >
           Submit
         </button>

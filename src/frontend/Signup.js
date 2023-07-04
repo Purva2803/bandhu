@@ -52,66 +52,65 @@ export const Signup = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem' }}>
-      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '1rem' }}>Sign Up</h2>
+      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '1rem' }}>Sign Up here to connect with awesome people !</h2>
       <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} onSubmit={handleSignup}>
-        <label style={{ fontWeight: 'bold', margin: '0.5rem 0' }}>First Name:</label>
+        <label style={{ fontfamily: 'Montserrat',fontWeight: 'bold', margin: '0.5rem 0' }}>First Name:</label>
         <input
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '4px' }}
-        />
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '10px' } } />
   
-        <label style={{ fontWeight: 'bold', margin: '0.5rem 0' }}>Last Name:</label>
+        <label style={{ fontfamily: 'Montserrat',fontWeight: 'bold', margin: '0.5rem 0' }}>Last Name:</label>
         <input
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '4px' }}
+          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '10px' }}
         />
   
-        <label style={{ fontWeight: 'bold', margin: '0.5rem 0' }}>Username:</label>
+        <label style={{fontfamily: 'Montserrat',fontfamily: 'Montserrat', fontWeight: 'bold', margin: '0.5rem 0' }}>Username:</label>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '4px' }}
+          style={{fontfamily: 'Montserrat', padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '10px' }}
         />
   
-        <label style={{ fontWeight: 'bold', margin: '0.5rem 0' }}>Email:</label>
+        <label style={{ fontfamily: 'Montserrat',fontfamily: 'Montserrat',fontWeight: 'bold', margin: '0.5rem 0' }}>Email:</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '4px' }}
+          style={{fontfamily: 'Montserrat', padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '10px' }}
         />
   
-        <label style={{ fontWeight: 'bold', margin: '0.5rem 0' }}>Password:</label>
+        <label style={{fontfamily: 'Montserrat',fontfamily: 'Montserrat', fontWeight: 'bold', margin: '0.5rem 0' }}>Password:</label>
         <input
           type={showPassword ? 'text' : 'password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '4px' }}
+          style={{ fontfamily: 'Montserrat',fontfamily: 'Montserrat',padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '10px' }}
         />
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          style={{ padding: '0.5rem 1rem', marginTop: '0.5rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '0.5rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
         >
           {showPassword ? 'Hide' : 'Show'} Password
         </button>
   
-        <label style={{ fontWeight: 'bold', margin: '0.5rem 0' }}>Confirm Password:</label>
+        <label style={{ fontfamily: 'Montserrat',fontWeight: 'bold', margin: '0.5rem 0' }}>Confirm Password:</label>
         <input
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          style={{ padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '4px' }}
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem', margin: '0.5rem 0', width: '300px', border: '1px solid #ccc', borderRadius: '10px' }}
         />
   
         <button
           type="submit"
-          style={{ padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+          style={{fontfamily: 'Montserrat', fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
         >
           Sign Up
         </button>
