@@ -77,13 +77,13 @@ export const Login = () => {
         <button
           type="button"
           onClick={handleGuestLogin}
-          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#123456                                                                                                                                      ', color: '#fff', border: 'none', cursor: 'pointer' }}
         >
           Log in as a Guest
         </button>
         <button
           type="submit"
-          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}
+          style={{ fontfamily: 'Montserrat',padding: '0.5rem 1rem', marginTop: '1rem', backgroundColor: '#737000 ', color: '#fff', border: 'none', cursor: 'pointer' }}
         >
           Submit
         </button>

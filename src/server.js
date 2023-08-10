@@ -1,5 +1,5 @@
 import { Server, Model, RestSerializer } from "miragejs";
-import { posts } from "./backend/db/posts";
+import { posting } from "./backend/db/posts";
 import { users } from "./backend/db/users";
 import {
   loginHandler,
@@ -57,7 +57,7 @@ export function makeServer({ environment = "development" } = {}) {
           bookmarks: [],
         })
       );
-      posts.forEach((item) => server.create("post", { ...item }));
+      posting.forEach((item) => server.create("post", { ...item }));
     },
 
     routes() {
@@ -116,6 +116,9 @@ export function makeServer({ environment = "development" } = {}) {
         "/users/unfollow/:followUserId/",
         unfollowUserHandler.bind(this)
       );
+      this.passthrough()
+      
+      this.passthrough('https://api.cloudinary.com/v1_1/donlwkpi8/auto/upload')
     },
   });
 }

@@ -1,0 +1,48 @@
+
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 20px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.sidebar nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sidebar nav a:hover {
+  background-color: #555;
+}
+
+/* Highlight Active NavLink */
+.sidebar nav a.active {
+  background-color: #555;
+}
+
+/* Main Content Styles */
+.main-content {
+  margin-left: 250px;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
