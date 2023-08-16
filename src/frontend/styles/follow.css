@@ -1,0 +1,47 @@
+.follow-container {
+    position: fixed;
+    top: 90px; /* Adjust this value to control the distance from the top */
+    right: 20px; /* Adjust this value to control the distance from the right */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    z-index: 1000; 
+  }
+  
+  
+  .follow-card {
+    width: 100px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .follow-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .follow-card h2,
+  .follow-card h3 {
+    margin: 5px 0;
+  }
+  
+  .follow-card button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .follow-card button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -8,7 +8,7 @@ export const Sidebar = () => {
     <div className="sidebar">
     <nav >
       
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/home">Home</NavLink>
       <NavLink to="/explore">Explore</NavLink>
       <NavLink to="/profile">Profile</NavLink>
       <NavLink to="/logout">Logout</NavLink>

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user,setUser] = useState("");
+  
+  const {login} = useAuth();
+  const Navigate = useNavigate();
   
 
   const handleChange = (event) => {
@@ -12,11 +18,19 @@ export const Login = () => {
     } else if (event.target.name === "password") {
       setPassword(event.target.value);
     }
+
+
   };
 
   const handleGuestLogin = () => {
     setUsername('purva');
     setPassword('purva2803');
+
+    user = {
+      username: 'purva',
+      password: 'purva2803'
+    }
+    setUser(user);
   };
 
   const handleSubmit = async (event) => {
@@ -33,11 +47,16 @@ export const Login = () => {
 
       const data = await response.json();
 
+
+
       if (response.ok) {
+        login(data);
+        console.log(data);
        
         window.alert("Login successful");
         localStorage.setItem("token", data.encodedToken);
-        window.location.href = "/";
+        Navigate("/home");
+       
       } else {
        
         window.alert(data.errors[0]);
@@ -87,6 +106,9 @@ export const Login = () => {
         >
           Submit
         </button>
+        <p style={{ marginTop: '1rem' }}>
+          Don't have an account? <NavLink to="/signup" style={{ color: '#007bff', textDecoration: 'none' }}>Sign up</NavLink>
+        </p>
       </form>
     </div>
   );

@@ -1,11 +1,17 @@
 
 import './styles/sortings.css'
-export const Sortings = () => {
+import React from 'react';
 
-    return (
-        <div className="sorting">
-            <h1>Sortings</h1>
-        </div>
-    )
 
-}
+export const Sorting = ({ handleSortByDate, handleFilterByTrending }) => {
+  return (
+
+
+    
+    <div className="sorting">
+     
+      <button onClick={handleSortByDate}>Sort by Date</button>
+      <button onClick={handleFilterByTrending}>Filter by Trending</button>
+    </div>
+  );
+};

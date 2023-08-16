@@ -4,7 +4,7 @@ import { useState } from "react";
 import "../styles/sidebar.css";
 import { NavLink } from "react-router-dom";
 import { Sidebar } from "../components/sidebar";
-import { Sortings } from "../sorting";
+import { Sorting } from "../sorting";
 
 export const HomePage = () => {
   return (
@@ -13,13 +13,16 @@ export const HomePage = () => {
         <h1>Bandhu</h1>
       </header>
        <Sidebar />
+     
       <div className="main-content">
         <main >
           <CreatePost />
+
          
         </main>
       </div>
-      <Sortings />
+      
+     
     </div>
   );
 };

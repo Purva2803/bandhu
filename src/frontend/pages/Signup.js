@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../context/authContext";
+import { NavLink } from "react-router-dom";
 
 export const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -9,12 +11,22 @@ export const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
+  let [user,setUser] = useState("");
+  const {login} = useAuth();
 
   const location = useLocation();
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    user = {  
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      username: username
+    }
+    setUser(user);
     try {
       const response = await fetch("/api/auth/signup", {
         method: "POST",
@@ -32,11 +44,15 @@ export const Signup = () => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         localStorage.setItem("token", data.encodedToken);
+       localStorage.setItem('user',JSON.stringify(user));
 
-        const { from } = location.state || { from: { pathname: "/" } };
+
+        const { from } = location.state || { from: { pathname: "/home" } };
         window.location.pathname = from.pathname;
         alert("Signup successful");
+
       } else {
         throw new Error("Signup failed");
       }
@@ -114,6 +130,9 @@ export const Signup = () => {
         >
           Sign Up
         </button>
+        <p style={{ fontfamily: 'Montserrat',marginTop: '1rem' }}>
+          Already have an account? <NavLink to="/" style={{ color: '#007bff', textDecoration: 'none' }}>Log in</NavLink>
+        </p>
       </form>
     </div>
   );

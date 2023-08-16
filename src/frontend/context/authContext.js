@@ -12,7 +12,8 @@ export const AuthProvider = ({children}) => {
     const [token,setToken] = useState(null);
 
     const login = (user) => {
-        setUser(user);
+        setUser(localStorage.setItem('user',user));
+        
         setToken(localStorage.setItem('token',user.token))
         console.log(user);
         console.log(token);
@@ -22,11 +23,23 @@ export const AuthProvider = ({children}) => {
         setUser(null);
     }
 
+    const checkAuth = () => {
+        if(localStorage.getItem('token')){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
     const value = {
         user,
         login,
-        logout
+        logout,
+        checkAuth
     }
+
 
     return (
         <authContext.Provider value={value}>

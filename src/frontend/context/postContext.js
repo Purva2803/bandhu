@@ -12,6 +12,7 @@ export const PostProvider = ({children}) => {
 
     const [posts,setPosts] = useState(posting);
     const [likes,setLikes] = useState(0);
+    const [bookmarks,setBookmarks] = useState(0);
     const createPost = async (post) => {
 
         
@@ -108,45 +109,108 @@ export const PostProvider = ({children}) => {
     }
 
     const likePost = async (postId) => {
-        console.log(postId)
-        try {
-            const response = await fetch(`/api/posts/${postId}/like`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "access-token": localStorage.getItem("access-token"),
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                window.location.href = "/";
-            }
-        } catch (error) {
-            console.log(error.message);
+      // Find the post in the posts array
+      const postToUpdate = posts.find(post => post._id === postId);
+    
+      if (postToUpdate) {
+        // Update the likes in the context state
+        const updatedPosts = posts.map(post => {
+          if (post._id === postId) {
+            // Increment likes for the specific post
+            return {
+              ...post,
+              likes: post.likes + 1,
+              isLiked: true
+            };
+          }
+          return post;
+        });
+      console.log(updatedPosts);
+        // Update the posts array in the context with the updated posts
+        setPosts(updatedPosts);
+      }
+    };
+    
+      const handleLikeUnlike = (postId, likes) => {
+        if (likes > 0) {
+          
+          unlikePost(postId);
+        } else {
+         
+          likePost(postId);
         }
-    }
-
-    const unlikePost = async (postId) => {
-        try {
-            const response = await fetch(`/api/posts/${postId}/unlike`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "access-token": localStorage.getItem("access-token"),
-                },
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data);
-                window.location.href = "/";
+      };
+       
+      const unlikePost = async (postId, likes) => {
+        const postToUpdate = posts.find(post => post._id === postId);
+      
+        if (postToUpdate && postToUpdate.isLiked) {
+          const updatedPosts = posts.map(post => {
+            if (post._id === postId) {
+              return {
+                ...post,
+                likes: post.likes - 1,
+                isLiked: false
+              };
             }
-        } catch (error) {
-            console.log(error.message);
+            return post;
+          });
+      
+          setLikes(likes - 1);
+          setPosts(updatedPosts);
         }
+      };
+  const handleBookmarkUnbookmark = (postId, bookmarks) => {
+    if (bookmarks > 0) {
+        // Post is already bookmarked, so perform unbookmark
+        unbookmarkPost(postId);
+    } else {
+        // Post is not bookmarked, so perform bookmark
+        bookmarkPost(postId);
+
     }
+};
+const MAX_BOOKMARKS_LIMIT = 1; // Set your desired bookmark limit here
+
+const bookmarkPost = async (postId, bookmarks) => {
+  const postToUpdate = posts.find(post => post._id === postId);
+
+  if (postToUpdate && !postToUpdate.isBookmarked && postToUpdate.bookmarks < MAX_BOOKMARKS_LIMIT) {
+    const updatedPosts = posts.map(post => {
+      if (post._id === postId) {
+        return {
+          ...post,
+          bookmarks: post.bookmarks + 1,
+          isBookmarked: true
+        };
+      }
+      return post;
+    });
+
+    setBookmarks(bookmarks + 1);
+    setPosts(updatedPosts);
+  }
+};
+
+const unbookmarkPost = async (postId, bookmarks) => {
+  const postToUpdate = posts.find(post => post._id === postId);
+
+  if (postToUpdate && postToUpdate.isBookmarked) {
+    const updatedPosts = posts.map(post => {
+      if (post._id === postId) {
+        return {
+          ...post,
+          bookmarks: post.bookmarks - 1,
+          isBookmarked: false
+        };
+      }
+      return post;
+    });
+
+    setBookmarks(bookmarks - 1);
+    setPosts(updatedPosts);
+  }
+};
 
 
     const value = {
@@ -158,7 +222,10 @@ export const PostProvider = ({children}) => {
         likePost,
         unlikePost,
         posts,
-        setPosts
+        setPosts,
+        likes,
+        handleLikeUnlike,
+        handleBookmarkUnbookmark
 
     }
 
