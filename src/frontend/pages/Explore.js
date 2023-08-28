@@ -14,6 +14,11 @@ export const Explore = () => {
 
   const sortedByDate = posts.slice().sort((a, b) => b.createdAt - a.createdAt);
 
+  const handleFilterByDate = () => {
+    setPosts([...sortedByDate]);
+  };
+
+
 
   const handleFilterByTrending = () => {
     
@@ -30,7 +35,7 @@ export const Explore = () => {
       <Sidebar />
       
       <div className="main-content">
-      <Sorting handleSortByDate={sortedByDate} handleFilterByTrending={handleFilterByTrending} />
+      <Sorting handleSortByDate={handleFilterByDate} handleFilterByTrending={handleFilterByTrending} />
 
       
         {posts.length > 0 ? (

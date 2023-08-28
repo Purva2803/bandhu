@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [user,setUser] = useState("");
+  const [user, setUser] = useState(null); // Initialize 'user' with null
   
-  const {login} = useAuth();
   const Navigate = useNavigate();
-  
 
   const handleChange = (event) => {
     if (event.target.name === "username") {
@@ -18,19 +15,22 @@ export const Login = () => {
     } else if (event.target.name === "password") {
       setPassword(event.target.value);
     }
-
-
   };
 
   const handleGuestLogin = () => {
-    setUsername('purva');
-    setPassword('purva2803');
+    setUsername("purva");
+    setPassword("purva2803");
 
-    user = {
-      username: 'purva',
-      password: 'purva2803'
-    }
-    setUser(user);
+    const guestUser = {
+      username: "purva",
+      password: "purva2803",
+      firstName: "Purva",
+      lastName: "Rajyaguru",
+      email: "rajyagurupurva28@gmail.com",
+    };
+
+    setUser(guestUser); // Update 'user' state with the guest user
+    localStorage.setItem("user", JSON.stringify(guestUser)); // Store guestUser in localStorage
   };
 
   const handleSubmit = async (event) => {
@@ -46,22 +46,19 @@ export const Login = () => {
       });
 
       const data = await response.json();
-
-
+      console.log(data);
 
       if (response.ok) {
-        login(data);
-        console.log(data);
-       
         window.alert("Login successful");
         localStorage.setItem("token", data.encodedToken);
+
+        // Update 'user' state with the user object from the response
+        setUser(data.user);
+        localStorage.setItem("user", JSON.stringify(data.foundUser));
+
         Navigate("/home");
-       
       } else {
-       
         window.alert(data.errors[0]);
-        
-       
       }
     } catch (error) {
       console.error("Error:", error);

@@ -33,8 +33,8 @@ export const CreatePost = () => {
 
   const [editPostContent, setEditPostContent] = useState("");
   const [postToEditId, setPostToEditId] = useState(null); // Define postToEditId
-  
-const getUser = JSON.parse(localStorage.getItem("user"));
+
+  const getUser = JSON.parse(localStorage.getItem("user"));
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -75,7 +75,7 @@ const getUser = JSON.parse(localStorage.getItem("user"));
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     try {
       const post = {
         content,
@@ -88,8 +88,12 @@ const getUser = JSON.parse(localStorage.getItem("user"));
       };
 
       await createPost(post);
-      { console.log(post.by)}
-                  {console.log(getUser.username)}
+      {
+        console.log(post.by);
+      }
+      {
+        console.log(getUser.username);
+      }
       setPosts([...posts, post]); //
       closeModal();
     } catch (error) {
@@ -152,55 +156,60 @@ const getUser = JSON.parse(localStorage.getItem("user"));
       </div>
 
       <div className={`post-modal ${isModalOpen ? "open" : ""}`}>
-        <div className="modal-content">
-          <span className="close-modal" onClick={closeModal}>
-            &times;
-          </span>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="file"
-              id="image"
-              name="picture_url"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
+  <div className="modal-content">
+    <span className="close-modal" onClick={closeModal}>
+      &times;
+    </span>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="file"
+        id="image"
+        name="picture_url"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
 
-            {isLoading ? (
-              <div className="loader">Loading...</div>
-            ) : (
-              <div>
-                {picture_url && (
-                  <img src={picture_url} alt="post" width="300" height="300" />
-                )}
-                <textarea
-                  id="content"
-                  name="content"
-                  placeholder="Write your post here"
-                  value={content}
-                  onChange={handleBodyChange}
-                />
-                <input type="submit" value="post" />
-              </div>
-            )}
+      {isLoading ? (
+        <div className="loader">Loading...</div>
+      ) : (
+        <div>
+          {picture_url && (
+            <img src={picture_url} alt="post" width="300" height="300" />
+          )}
+          {!postToEditId && (
+            // Regular post creation input fields
+            <div>
+              <textarea
+                id="content"
+                name="content"
+                placeholder="Write your post here"
+                value={content}
+                onChange={handleBodyChange}
+              />
+              <input type="submit" value="post" />
+            </div>
+          )}
 
-            {/* For Editing Post */}
-            {postToEditId && (
-              <div>
-                <textarea
-                  id="edit-content"
-                  name="edit-content"
-                  placeholder="Edit your post here"
-                  value={editPostContent}
-                  onChange={handleEditBodyChange}
-                />
-                <button type="button" onClick={handleEditSubmit}>
-                  Save Edit
-                </button>
-              </div>
-            )}
-          </form>
+          {postToEditId && (
+            // Edit form, rendered only when postToEditId is set
+            <div>
+              <textarea
+                id="edit-content"
+                name="edit-content"
+                placeholder="Edit your post here"
+                value={editPostContent}
+                onChange={handleEditBodyChange}
+              />
+              <button type="button" onClick={handleEditSubmit}>
+                Save Edit
+              </button>
+            </div>
+          )}
         </div>
-      </div>
+      )}
+    </form>
+  </div>
+</div>
 
       {/* Posts */}
       <div className="posts-container">
@@ -238,7 +247,8 @@ const getUser = JSON.parse(localStorage.getItem("user"));
                       <BsBookmark />
                     )}
                   </button>
-  
+                  {console.log(post.by)}
+                  {console.log(getUser.username)}
                   {getUser && getUser.username == post.by && (
                     <div>
                       <button
